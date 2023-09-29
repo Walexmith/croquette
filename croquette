@@ -1,0 +1,215 @@
+// CAT FOOD DISPENSER
+
+#include <Servo.h>
+#include <Wire.h>
+#include "RTClib.h"
+RTC_DS1307 rtc;
+Servo myServo; // create myServo object to control a myServo
+int pos = 10; // variable to store the myServo position
+
+void setup()
+{
+Serial.begin(9600);
+if (! rtc.begin()) {
+Serial.println("Couldn't find RTC");
+while (1);
+}
+
+if (! rtc.isrunning()) {
+Serial.println("RTC is NOT running!");
+// following line sets the RTC to the date & time this sketch was compiled
+rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+}
+
+pinMode(11, OUTPUT);
+delay(1000);
+digitalWrite(11, LOW);
+myServo.attach(9); // attaches the myServo on pin 9 of the arduino board
+
+}
+
+void loop() {
+DateTime now = rtc.now();
+
+// Serial.print(now.year(), DEC);
+// Serial.print('/');
+// Serial.print(now.month(), DEC);
+// Serial.print('/');
+// Serial.print(now.day(), DEC);
+// Serial.print(" (");
+// Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);
+// Serial.print(") ");
+Serial.print(now.hour(), DEC);
+Serial.print(':');
+Serial.print(now.minute(), DEC);
+Serial.print(':');
+Serial.print(now.second(), DEC);
+Serial.println();
+delay(1000); // This crap runs every second
+
+/*--------------------------The following is simply 7 times the same routine of checking time against a set of predetermined times of the day,
+if it matches, the servo is actuated to deliver som quibble. When the ime has passed, the servo is reset to refill. 
+-----------------------*/
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+if (now.hour() == 7 and now.minute() == 00 and now.second() <= 10 ) 
+{ digitalWrite(11, HIGH);
+myServo.write(160);
+delay(3000);
+digitalWrite(11, LOW);
+delay(500);
+digitalWrite(11, HIGH);
+delay(500);
+digitalWrite(11, LOW);
+}
+
+if (now.hour() == 7 and now.minute() == 00 and now.second() <= 21 )
+{ digitalWrite(11, HIGH);
+myServo.write(10);
+delay(3000);
+digitalWrite(11, LOW);
+delay(3000);
+}
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+if (now.hour() == 9 and now.minute() == 30 and now.second() <= 10 )
+{ digitalWrite(11, HIGH);
+myServo.write(160);
+delay(3000);
+digitalWrite(11, LOW);
+delay(500);
+digitalWrite(11, HIGH);
+delay(500);
+digitalWrite(11, LOW);
+}
+
+if (now.hour() == 9 and now.minute() == 30 and now.second() <= 21 )
+{ digitalWrite(11, HIGH);
+myServo.write(10);
+delay(3000);
+digitalWrite(11, LOW);
+delay(3000);
+}
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+if (now.hour() == 12 and now.minute() == 00 and now.second() <= 10 )
+{ digitalWrite(11, HIGH);
+myServo.write(160);
+delay(3000);
+digitalWrite(11, LOW);
+delay(500);
+digitalWrite(11, HIGH);
+delay(500);
+digitalWrite(11, LOW);
+}
+
+if (now.hour() == 12 and now.minute() == 00 and now.second() <= 21 )
+{ digitalWrite(11, HIGH);
+myServo.write(10);
+delay(3000);
+digitalWrite(11, LOW);
+delay(3000);
+}
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+if (now.hour() == 14 and now.minute() == 30 and now.second() <= 10 )
+{ digitalWrite(11, HIGH);
+myServo.write(160);
+delay(3000);
+digitalWrite(11, LOW);
+delay(500);
+digitalWrite(11, HIGH);
+delay(500);
+digitalWrite(11, LOW);
+}
+
+if (now.hour() == 14 and now.minute() == 30 and now.second() <= 21 )
+{ digitalWrite(11, HIGH);
+myServo.write(10);
+delay(3000);
+digitalWrite(11, LOW);
+delay(3000);
+}
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+if (now.hour() == 17 and now.minute() == 00 and now.second() <= 10 )
+{ digitalWrite(11, HIGH);
+myServo.write(160);
+delay(3000);
+digitalWrite(11, LOW);
+delay(500);
+digitalWrite(11, HIGH);
+delay(500);
+digitalWrite(11, LOW);
+}
+
+if (now.hour() == 17 and now.minute() == 00 and now.second() <= 21 )
+{ digitalWrite(11, HIGH);
+myServo.write(10);
+delay(3000);
+digitalWrite(11, LOW);
+delay(3000);
+}
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+if (now.hour() == 19 and now.minute() == 30 and now.second() <= 10 )
+{ digitalWrite(11, HIGH);
+myServo.write(160);
+delay(3000);
+digitalWrite(11, LOW);
+delay(500);
+digitalWrite(11, HIGH);
+delay(500);
+digitalWrite(11, LOW);
+}
+
+if (now.hour() == 19 and now.minute() == 30 and now.second() <= 21 )
+{ digitalWrite(11, HIGH);
+myServo.write(10);
+delay(3000);
+digitalWrite(11, LOW);
+delay(3000);
+}
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+if (now.hour() == 22 and now.minute() == 00 and now.second() <= 10 )
+{ digitalWrite(11, HIGH);
+myServo.write(160);
+delay(3000);
+digitalWrite(11, LOW);
+delay(500);
+digitalWrite(11, HIGH);
+delay(500);
+digitalWrite(11, LOW);
+}
+
+if (now.hour() == 22 and now.minute() == 00 and now.second() <= 21 )
+{ digitalWrite(11, HIGH);
+myServo.write(10);
+delay(3000);
+digitalWrite(11, LOW);
+delay(3000);
+}
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+}
